@@ -1,7 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+metric1 = Metric.find_or_create_by(name: 'Metric 1')
+metric2 = Metric.find_or_create_by(name: 'Metric 2')
+
+readings = []
+
+1.upto(10_000) do
+  readings << { time: rand(3.hour.ago..Time.now), value: rand(100), metric_id: metric1.id }
+  readings << { time: rand(3.hour.ago..Time.now), value: rand(100), metric_id: metric2.id }
+end
+
+Reading.insert_all(readings)

@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 2021_05_29_132954) do
     t.datetime "time"
     t.integer "value"
     t.bigint "metric_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", precision: 6, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.index ["metric_id"], name: "index_readings_on_metric_id"
     t.index ["time", "value"], name: "index_readings_on_time_and_value"
   end
