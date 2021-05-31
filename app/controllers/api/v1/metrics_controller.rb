@@ -2,12 +2,12 @@ class Api::V1::MetricsController < ApplicationController
   protect_from_forgery with: :null_session
 
   def index
-    metrics = Metric.all
+    metrics = Metric.includes(options[:include]).all
     render json: MetricSerializer.new(metrics, options).serializable_hash.to_json
   end
 
   def show
-    metric = Metric.find_by(id: params[:id])
+    metric = Metric.includes(options[:include]).find_by(id: params[:id])
     render json: MetricSerializer.new(metric, options).serializable_hash.to_json
   end
 
@@ -22,7 +22,7 @@ class Api::V1::MetricsController < ApplicationController
   end
 
   def update
-    metric = Metric.find_by(id: params[:id])
+    metric = Metric.includes(options[:include]).find_by(id: params[:id])
 
     if metric.update(metric_params)
       render json: MetricSerializer.new(metric, options).serializable_hash.to_json
@@ -48,6 +48,6 @@ class Api::V1::MetricsController < ApplicationController
   end
 
   def options
-    @options ||= { include: %i[readings] }
+    @options ||= { include: params[:include] || [], params: { include: params[:include] || [] } }
   end
 end
