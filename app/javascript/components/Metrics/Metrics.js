@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import axios from 'axios'
 import Metric from './Metric'
+import { deserialize } from "deserialize-json-api";
 
 const Metrics = () => {
   const [metrics, setMetrics] = useState([])
@@ -8,11 +9,10 @@ const Metrics = () => {
   useEffect(() => {
     axios.get('/api/v1/metrics')
     .then( resp => {
-      setMetrics(resp.data.data)
+      setMetrics(deserialize(resp.data)?.data)
     })
     .catch( resp => console.log(resp))
   }, [metrics.length])
-
 
   const list = metrics.map( item => {
     return(<Metric key={item.id} id={item.id} />)
