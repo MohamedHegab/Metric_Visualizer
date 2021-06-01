@@ -11,7 +11,7 @@ const Chart = ({ data }) => {
         format: "%Y-%m-%dT%H:%M:%S.%L%Z",
         precision: "minute"
       }}
-      xFormat="time:%d %m %H:%M"
+      xFormat="time:%d/%m %H:%M"
       yScale={{
         type: "linear",
         min: "auto",
