@@ -1,5 +1,14 @@
 class Api::V1::ReadingsController < ApplicationController
   protect_from_forgery with: :null_session
+  before_action :set_metric, only: :index
+
+  def index
+    return render json: { message: 'Metric not found' }, status: 422 unless @metric
+
+    readings = Reading.query_average_period(@metric, params[:period], params[:time_range].gsub('_', ' '))
+
+    render json: ReadingSerializer.new(readings).serializable_hash.to_json
+  end
 
   def create
     reading = Reading.new(reading_params)
@@ -23,6 +32,10 @@ class Api::V1::ReadingsController < ApplicationController
   end
 
   private
+
+  def set_metric
+    @metric = Metric.find_by(id: params[:metric_id])
+  end
 
   def reading_params
     params.require(:reading).permit(:time, :value)
