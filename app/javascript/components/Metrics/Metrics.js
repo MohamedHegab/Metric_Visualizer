@@ -19,12 +19,12 @@ const Metrics = () => {
   })
 
   return (
-    <div className='home'>
-      <div className='header'>
+    <div className=''>
+      <div className=''>
         <h1>Metrics</h1>
-        <div className='subheader'>All your Metrics.</div>
+        <div className=''>All your Metrics.</div>
       </div>
-      <div className='grid'>
+      <div className='grid sm:grid-cols-1 lg:grid-cols-2 gap-4'>
         {list}
       </div>
     </div>
