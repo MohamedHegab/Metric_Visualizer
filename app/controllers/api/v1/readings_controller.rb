@@ -5,7 +5,10 @@ class Api::V1::ReadingsController < ApplicationController
   def index
     return render json: { message: 'Metric not found' }, status: 422 unless @metric
 
-    readings = Reading.query_average_period(@metric, params[:period], params[:time_range].gsub('_', ' '))
+    period     = params[:period] || 'minute'
+    time_range = (params[:time_range] || '1_days').gsub('_', ' ')
+
+    readings   = Reading.query_average_period(metric: @metric, period: period, time_range: time_range)
 
     render json: ReadingSerializer.new(readings).serializable_hash.to_json
   end
