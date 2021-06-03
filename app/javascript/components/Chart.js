@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { ResponsiveLine } from "@nivo/line";
 
 const Chart = ({ data }) => {
@@ -9,7 +9,7 @@ const Chart = ({ data }) => {
       xScale={{
         type: "time",
         format: "%Y-%m-%dT%H:%M:%S.%L%Z",
-        precision: "minute"
+        precision: "minute",
       }}
       xFormat="time:%d/%m %H:%M"
       yScale={{
@@ -17,7 +17,7 @@ const Chart = ({ data }) => {
         min: "auto",
         max: "auto",
         stacked: false,
-        reverse: false
+        reverse: false,
       }}
       axisTop={null}
       axisRight={null}
@@ -28,14 +28,14 @@ const Chart = ({ data }) => {
         tickRotation: 0,
         legend: "count",
         legendOffset: -40,
-        legendPosition: "middle"
+        legendPosition: "middle",
       }}
       axisBottom={{
         format: "%H:%M",
         // tickValues: "every 3 days",
         // tickRotation: -90,
         legend: "time scale",
-        legendOffset: -12
+        legendOffset: -12,
       }}
       colors={{ scheme: "nivo" }}
       pointSize={10}
@@ -65,14 +65,14 @@ const Chart = ({ data }) => {
               on: "hover",
               style: {
                 itemBackground: "rgba(0, 0, 0, .03)",
-                itemOpacity: 1
-              }
-            }
-          ]
-        }
+                itemOpacity: 1,
+              },
+            },
+          ],
+        },
       ]}
     />
-  )
-}
+  );
+};
 
-export default Chart
+export default Chart;
