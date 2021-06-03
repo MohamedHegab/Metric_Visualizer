@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import Loader from "react-loader-spinner";
 
 const LoadingSpinner = () => (
@@ -9,6 +9,6 @@ const LoadingSpinner = () => (
     width={100}
     timeout={3000} //3 secs
   />
-)
+);
 
-export default LoadingSpinner
+export default LoadingSpinner;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import axios from 'axios'
+import axios from "axios";
 
 const AddReadingForm = ({ metric, closeModal, setAddedReading }) => {
   const validationSchema = Yup.object().shape({
@@ -18,7 +18,7 @@ const AddReadingForm = ({ metric, closeModal, setAddedReading }) => {
           .post(`/api/v1/metrics/${metric.id}/readings`, {
             reading: {
               time: new Date(values.time).toISOString(),
-              value: values.value
+              value: values.value,
             },
           })
           .then((resp) => {

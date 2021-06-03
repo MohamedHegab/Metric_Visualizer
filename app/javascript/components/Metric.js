@@ -4,7 +4,7 @@ import { deserialize } from "deserialize-json-api";
 import Chart from "./Chart";
 import AddReadingForm from "./AddReadingForm";
 import { Modal, useModal, ModalTransition } from "react-simple-hook-modal";
-import LoadingSpinner from './LoadingSpinner'
+import LoadingSpinner from "./LoadingSpinner";
 
 const Metric = ({ metric }) => {
   const [readings, setReadings] = useState([]);
@@ -94,7 +94,7 @@ const Metric = ({ metric }) => {
       <div style={{ height: 350 }} className="App">
         {loading && <LoadingSpinner />}
 
-        { readings.length > 0 && !loading && (
+        {readings.length > 0 && !loading && (
           <Chart
             data={[
               {
@@ -108,7 +108,9 @@ const Metric = ({ metric }) => {
           />
         )}
 
-        { readings.length === 0 && !loading && <div className="text-center">No data found for this time range.</div>}
+        {readings.length === 0 && !loading && (
+          <div className="text-center">No data found for this time range.</div>
+        )}
       </div>
     </div>
   );
