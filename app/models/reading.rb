@@ -3,6 +3,7 @@ class Reading < ApplicationRecord
 
   validates_presence_of :time, :value
   validates_uniqueness_of :time, scope: :metric_id
+  validate :time_cannot_be_in_future
 
   def self.query_average_period(metric:, period:, time_range:)
     sql = "with #{period.pluralize} as (
@@ -19,5 +20,11 @@ class Reading < ApplicationRecord
           where readings.metric_id = #{metric.id}
           group by 1;"
     ActiveRecord::Base.connection.exec_query(sql)
+  end
+
+  private
+
+  def time_cannot_be_in_future
+    errors.add(:time, 'Cannot be in future') if time&.future?
   end
 end

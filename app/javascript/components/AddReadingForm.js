@@ -5,7 +5,9 @@ import axios from "axios";
 
 const AddReadingForm = ({ metric, closeModal, setAddedReading }) => {
   const validationSchema = Yup.object().shape({
-    time: Yup.string().required("Required"),
+    time: Yup.date()
+      .required("Required")
+      .max(new Date(), "Date cannot be in the future"),
     value: Yup.string().required("Required"),
   });
 

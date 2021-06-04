@@ -9,7 +9,7 @@ import LoadingSpinner from "./LoadingSpinner";
 const Metric = ({ metric }) => {
   const [readings, setReadings] = useState([]);
   const [timeRange, setTimeRange] = useState("1_days");
-  const [period, setPeriod] = useState("minute");
+  const [period, setPeriod] = useState("hour");
   const [addedReading, setAddedReading] = useState(false);
   const [loading, setLoading] = useState(false);
   const { isModalOpen, openModal, closeModal } = useModal();
