@@ -18,7 +18,7 @@ class Api::V1::ReadingsController < ApplicationController
     reading.metric_id = params[:metric_id]
 
     if reading.save
-      render json: ReadingSerializer.new(reading).serializable_hash.to_json
+      render json: ReadingSerializer.new(reading).serializable_hash.to_json, status: :created
     else
       render json: { error: reading.errors.messages }, status: 422
     end
