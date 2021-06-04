@@ -11,27 +11,29 @@ const AddReadingForm = ({ metric, closeModal, setAddedReading }) => {
     value: Yup.string().required("Required"),
   });
 
+  const submitForm = (values, { setSubmitting }) => {
+    axios
+      .post(`/api/v1/metrics/${metric.id}/readings`, {
+        reading: {
+          time: new Date(values.time).toISOString(),
+          value: values.value,
+        },
+      })
+      .then((resp) => {
+        closeModal();
+        setAddedReading(true);
+      })
+      .catch((resp) => console.log(resp));
+    setTimeout(() => {
+      setSubmitting(false);
+    }, 400);
+  };
+
   return (
     <Formik
       initialValues={{ time: "", value: "" }}
       validationSchema={validationSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        axios
-          .post(`/api/v1/metrics/${metric.id}/readings`, {
-            reading: {
-              time: new Date(values.time).toISOString(),
-              value: values.value,
-            },
-          })
-          .then((resp) => {
-            closeModal();
-            setAddedReading(true);
-          })
-          .catch((resp) => console.log(resp));
-        setTimeout(() => {
-          setSubmitting(false);
-        }, 400);
-      }}
+      onSubmit={submitForm}
     >
       {({ isSubmitting }) => (
         <div className="flex bg-gray-bg1">

@@ -1,6 +1,6 @@
 # Metric Visualizer
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f63e59c5-873f-4d42-b91f-06a180810a65/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f63e59c5-873f-4d42-b91f-06a180810a65/Untitled.png)
+![https://i.ibb.co/7NT2GWK/metric-visualizer-image.png](https://i.ibb.co/7NT2GWK/metric-visualizer-image.png)
 
 ## **Description**
 

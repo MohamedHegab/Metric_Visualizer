@@ -8,24 +8,26 @@ const AddMetricForm = ({ closeModal, setAddedMetric }) => {
     name: Yup.string().required("Required"),
   });
 
+  const submitForm = (values, { setSubmitting }) => {
+    axios
+      .post(`/api/v1/metrics`, {
+        metric: { ...values },
+      })
+      .then((resp) => {
+        closeModal();
+        setAddedMetric(true);
+      })
+      .catch((resp) => console.log(resp));
+    setTimeout(() => {
+      setSubmitting(false);
+    }, 400);
+  };
+
   return (
     <Formik
       initialValues={{ name: "" }}
       validationSchema={validationSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        axios
-          .post(`/api/v1/metrics`, {
-            metric: { ...values },
-          })
-          .then((resp) => {
-            closeModal();
-            setAddedMetric(true);
-          })
-          .catch((resp) => console.log(resp));
-        setTimeout(() => {
-          setSubmitting(false);
-        }, 400);
-      }}
+      onSubmit={submitForm}
     >
       {({ isSubmitting }) => (
         <div className="flex bg-gray-bg1">
@@ -60,7 +62,7 @@ const AddMetricForm = ({ closeModal, setAddedMetric }) => {
                   className="text-blue border font-bold px-4 rounded-full cursor-pointer"
                   onClick={() => closeModal()}
                 >
-                  close
+                  Close
                 </button>
               </div>
             </Form>

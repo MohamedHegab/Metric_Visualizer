@@ -32,8 +32,6 @@ const Chart = ({ data }) => {
       }}
       axisBottom={{
         format: "%H:%M",
-        // tickValues: "every 3 days",
-        // tickRotation: -90,
         legend: "time scale",
         legendOffset: -12,
       }}

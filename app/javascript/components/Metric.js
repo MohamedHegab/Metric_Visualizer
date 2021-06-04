@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { deserialize } from "deserialize-json-api";
-import Chart from "./Chart";
+import Chart from "./kits/Chart";
 import AddReadingForm from "./AddReadingForm";
 import { Modal, useModal, ModalTransition } from "react-simple-hook-modal";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "./kits/LoadingSpinner";
 
 const Metric = ({ metric }) => {
   const [readings, setReadings] = useState([]);
@@ -100,8 +100,8 @@ const Metric = ({ metric }) => {
               {
                 id: "LineOne",
                 data: readings?.map((reading, i) => ({
-                  x: reading?.time,
-                  y: reading?.value,
+                  x: reading.time,
+                  y: reading.value,
                 })),
               },
             ]}
