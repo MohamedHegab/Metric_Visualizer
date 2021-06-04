@@ -26,11 +26,11 @@ Backend ruby on rails application tested with RSpec.
 
 These are the relation between models in the backend.
 
-![https://ibb.co/bJhZLKp](https://ibb.co/bJhZLKp)
+![https://i.ibb.co/6BhxbW6/metric-visualizer-be.png](https://i.ibb.co/6BhxbW6/metric-visualizer-be.png)
 
 The relation between components in React
 
-![https://ibb.co/RDm0ssC](https://ibb.co/RDm0ssC)
+![https://i.ibb.co/kSf8wwh/metric-visualizer-fd.png](https://i.ibb.co/kSf8wwh/metric-visualizer-fd.png)
 
 ## **Future Enhancements**
 
