@@ -1,24 +1,37 @@
-# README
+# Metric Visualizer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f63e59c5-873f-4d42-b91f-06a180810a65/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f63e59c5-873f-4d42-b91f-06a180810a65/Untitled.png)
 
-Things you may want to cover:
+## **Description**
 
-* Ruby version
+Enable you to view your data in nice graphs with the ability to add another metric or add data to any metric.
 
-* System dependencies
+Can filter each graph with the time range and the average / period data.
 
-* Configuration
+## **Prerequisites**
 
-* Database creation
+- Ruby 2.7.2 installed on the system
+- Yarn Installed on the system
 
-* Database initialization
+## **How To Start**
 
-* How to run the test suite
+1. `bundle install`
+2. `rails db:create && rails db:migrate && rails db:seed`
+3. `yarn install`
+4. `rails s`
 
-* Services (job queues, cache servers, search engines, etc.)
+## **About the Project**
 
-* Deployment instructions
+Backend ruby on rails application tested with RSpec.
 
-* ...
+These are the relation between models in the backend.
+
+![https://ibb.co/bJhZLKp](https://ibb.co/bJhZLKp)
+
+The relation between components in React
+
+![https://ibb.co/RDm0ssC](https://ibb.co/RDm0ssC)
+
+## **Future Enhancements**
+
+- Expose add reading api so that we can add reading automatically from multiple sources
