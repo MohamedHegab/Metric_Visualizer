@@ -28,6 +28,8 @@ These are the relation between models in the backend.
 
 ![https://i.ibb.co/6BhxbW6/metric-visualizer-be.png](https://i.ibb.co/6BhxbW6/metric-visualizer-be.png)
 
+I decided to create materialized view for the readings average as it is read a lot and can be very big but for adding right now we are adding it by hand. creation will take long time but reading will be very fast.
+
 The relation between components in React
 
 ![https://i.ibb.co/kSf8wwh/metric-visualizer-fd.png](https://i.ibb.co/kSf8wwh/metric-visualizer-fd.png)

@@ -8,7 +8,7 @@ class Api::V1::ReadingsController < ApplicationController
     period     = params[:period] || 'minute'
     time_range = (params[:time_range] || '1_days').gsub('_', ' ')
 
-    readings   = Reading.query_average_period(metric: @metric, period: period, time_range: time_range)
+    readings   = ReadingsAverage.where(avg_period: period, metric_id: @metric.id).last_period(time_range).order(:time)
 
     render json: ReadingSerializer.new(readings).serializable_hash.to_json
   end
