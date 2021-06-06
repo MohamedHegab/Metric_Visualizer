@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_071814) do
+ActiveRecord::Schema.define(version: 2021_05_29_132954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,29 +33,4 @@ ActiveRecord::Schema.define(version: 2021_06_06_071814) do
   end
 
   add_foreign_key "readings", "metrics"
-
-  create_view "readings_averages", materialized: true, sql_definition: <<-SQL
-      SELECT date_trunc('minute'::text, readings."time") AS "time",
-      readings.metric_id,
-      avg(readings.value) AS value,
-      'minute'::text AS avg_period
-     FROM readings
-    GROUP BY (date_trunc('minute'::text, readings."time")), readings.metric_id
-  UNION ALL
-   SELECT date_trunc('hour'::text, readings."time") AS "time",
-      readings.metric_id,
-      avg(readings.value) AS value,
-      'hour'::text AS avg_period
-     FROM readings
-    GROUP BY (date_trunc('hour'::text, readings."time")), readings.metric_id
-  UNION ALL
-   SELECT date_trunc('day'::text, readings."time") AS "time",
-      readings.metric_id,
-      avg(readings.value) AS value,
-      'day'::text AS avg_period
-     FROM readings
-    GROUP BY (date_trunc('day'::text, readings."time")), readings.metric_id;
-  SQL
-  add_index "readings_averages", ["time", "metric_id", "avg_period"], name: "index_readings_averages_on_time_and_metric_id_and_avg_period"
-
 end
