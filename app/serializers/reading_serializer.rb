@@ -1,15 +1,11 @@
 class ReadingSerializer
   include JSONAPI::Serializer
 
-  attribute :time do |object|
-    object['time']
-  end
+  attribute :time
 
-  attribute :value do |object|
-    object['value']
-  end
+  attribute :value
 
-  set_id :value_time  do |object|
-    "#{object['value']} (#{object['time']})"
+  set_id :value_time do |object|
+    "#{object.value} (#{object.time})"
   end
 end
