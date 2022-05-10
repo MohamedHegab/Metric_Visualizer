@@ -8,4 +8,8 @@ class ReadingSerializer
   set_id :value_time do |object|
     "#{object.value} (#{object.time})"
   end
+
+  def call
+    serializable_hash.to_json
+  end
 end

@@ -8,9 +8,13 @@ class Api::V1::ReadingsController < ApplicationController
     period     = params[:period] || 'minute'
     time_range = (params[:time_range] || '1_days').gsub('_', ' ')
 
+    # calling any of these methods
+    #   Reading.minute_average_from
+    #   Reading.hour_average_from
+    #   Reading.day_average_from
     readings   = Reading.where(metric: @metric).send("#{period}_average_from", time_range).order('time')
 
-    render json: ReadingSerializer.new(readings).serializable_hash.to_json
+    render json: ReadingSerializer.new(readings).call
   end
 
   def create
@@ -18,7 +22,7 @@ class Api::V1::ReadingsController < ApplicationController
     reading.metric_id = params[:metric_id]
 
     if reading.save
-      render json: ReadingSerializer.new(reading).serializable_hash.to_json, status: :created
+      render json: ReadingSerializer.new(reading).call, status: :created
     else
       render json: { error: reading.errors.messages }, status: 422
     end
